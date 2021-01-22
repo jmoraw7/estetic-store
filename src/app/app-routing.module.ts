@@ -7,10 +7,6 @@ import { UpdateProductComponent } from './update-product/update-product.componen
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: '/products'
-  }, {
     path: 'products',
     component: ProductsComponent
   }, { 
@@ -19,7 +15,10 @@ const routes: Routes = [
   }, { 
     path: 'update-product/:id', 
     component: UpdateProductComponent 
-  }
+  }, {
+    path: '**',
+    redirectTo: '/products'
+  },
 ];
 
 @NgModule({
