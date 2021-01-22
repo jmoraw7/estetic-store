@@ -18,6 +18,9 @@ const routes: Routes = [
   }, {
     path: '**',
     redirectTo: '/products'
+  }, {
+    path: '',
+    redirectTo: '/products'
   },
 ];
 
