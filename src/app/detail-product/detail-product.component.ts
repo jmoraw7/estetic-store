@@ -15,7 +15,6 @@ export class DetailProductComponent implements OnInit {
     private firestoreService: FirestoreService
   ) { 
     this.id = this._Activatedroute.snapshot.paramMap.get("id");
-    console.log(this.id);
   }
 
   ngOnInit(): void {

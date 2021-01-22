@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
@@ -12,8 +12,11 @@ export class ProductsComponent implements OnInit {
   public products = [];
   constructor(
     private firestoreService: FirestoreService,
-    private router: Router
-    ) {}
+    private router: Router,
+    private elementRef: ElementRef
+    ) {
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#a5a5a5';
+    }
 
   ngOnInit(): void {
     this.firestoreService.getProducts().subscribe((productsSnapshot) => {

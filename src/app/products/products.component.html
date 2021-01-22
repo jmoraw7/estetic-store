@@ -1,22 +1,23 @@
 <div class="grd">
   <div class="grd-row">
     <div class="grd-row-col-2">
-        <h1>Products</h1>
+        <h1>Productos</h1>
     </div>
-    <div class="grd-row-col-4">
-      <div>
-        <div *ngFor="let p of products" [routerLink]="['/product', p.id]">
-          <div>
+    <span [routerLink]="['/update-product', 0]">CREAR</span>
+    <div class="grid">
+      <ng-container *ngFor="let p of products">
+        <div [routerLink]="['/product', p.id]"  class="card">
+          <div class="image">
             <img [src]="p.data.image">
           </div>
-          <div class="media-body">
-            <p>{{p.data.name}}</p>
-            <p>{{p.data.description}}</p>
-            <p>{{p.data.previus_price}}</p>
-            <p>{{p.data.actual_price}}</p>
+          <div class="body">
+            <span class="name">{{p.data.name}}</span> <br>
+            <span>{{p.data.description}}</span> <br>
+            <span *ngIf="p.data.previus_price > 0" class="discount price">${{p.data.previus_price}}</span> <br *ngIf="p.data.previus_price > 0">
+            <span class="price">${{p.data.actual_price}}</span> <br>
           </div>
         </div>
-      </div>
-    </div>
+      </ng-container>
+   </div>
   </div>
 </div>
