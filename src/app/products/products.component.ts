@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
     private router: Router,
     private elementRef: ElementRef
     ) {
-      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#a5a5a5';
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#ffffff';
     }
 
   ngOnInit(): void {

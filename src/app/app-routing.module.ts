@@ -17,9 +17,11 @@ const routes: Routes = [
     component: UpdateProductComponent 
   }, {
     path: '**',
+    pathMatch: 'full',
     redirectTo: '/products'
   }, {
     path: '',
+    pathMatch: 'full',
     redirectTo: '/products'
   },
 ];
