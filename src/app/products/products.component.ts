@@ -10,6 +10,8 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 })
 export class ProductsComponent implements OnInit {
   public products = [];
+  loading: boolean = true;
+  error: boolean = false;
   constructor(
     private firestoreService: FirestoreService,
     private router: Router,
@@ -19,20 +21,19 @@ export class ProductsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.firestoreService.getProducts().subscribe((productsSnapshot) => {
+    localStorage.setItem('admin', btoa('*!esteticestore!*'));
+    this.firestoreService.getProducts().subscribe(async (productsSnapshot) => {
       this.products = [];
-      productsSnapshot.forEach((productData: any) => {
-        this.products.push({
+      await productsSnapshot.forEach(async (productData: any) => {
+        await this.products.push({
           id: productData.payload.doc.id,
           data: productData.payload.doc.data()
         });
-        console.log(this.products);
-      })
+      });
+      this.loading = false;
+    }, error => {
+      this.loading = false;
+      this.error = true;
     });
   }
-
-  detail(): void {
-    this.router.navigate(['detail'])
-  }
-
 }

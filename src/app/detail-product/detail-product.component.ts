@@ -10,6 +10,7 @@ import { FirestoreService } from '../services/firestore/firestore.service';
 export class DetailProductComponent implements OnInit {
   id: any;
   product: any;
+  isAdmin: boolean = false;
   constructor(
     private _Activatedroute: ActivatedRoute,
     private firestoreService: FirestoreService
@@ -18,11 +19,17 @@ export class DetailProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem('admin') == '*!esteticestore!*') {
+      this.isAdmin = true;
+    }
     let editSubscribe = this.firestoreService.getProduct(this.id).subscribe((product) => {
       this.product = product.payload.data();
-      console.log(this.product);
       editSubscribe.unsubscribe();
     });
+  }
+
+  verifyAdmin() {
+    
   }
 
 }

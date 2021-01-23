@@ -1,1 +1,15 @@
-<p>detail-product works!</p>
+<div class="toolbar">
+    <h1>Detalle del producto</h1>
+    <span class="add" ></span>
+</div>
+
+<div class="body">
+    <div class="card">
+
+    </div>
+    <div class="footer">
+        <button>Enviar información al vendedor</button>
+        <button *ngIf="isAdmin" [routerLink]="['/update-product', id]">Editar</button>
+        <button *ng="isAdmin">Eliminar</button>
+    </div>
+</div>

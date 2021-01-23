@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "EsteticStore"
+    }
+  },
+  "defaultProject": "EsteticStore",
+  "cli": {
+    "analytics": "7f084d7e-8f95-40e1-8c86-c9d43d619f50"
+  }
 }
