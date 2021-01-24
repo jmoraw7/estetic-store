@@ -1,18 +1,22 @@
 <div class="toolbar">
   <h1>Productos</h1>
-  <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-  <span class="add" [routerLink]="['/update-product', 0]">+</span>
+  <span class="admin" *ngIf="!isAdmin">
+    <img class="icon" src="assets/profile-user.png" [routerLink]="['/admin', 'home', 0]">
+  </span>
+  <span class="add" [routerLink]="['/update-product', 0]" *ngIf="isAdmin">+</span>
 </div>
+
 <div class="spinner" *ngIf="loading">
   <span class="spinner-inner-1"></span>
   <span class="spinner-inner-2"></span>
   <span class="spinner-inner-3"></span>
 </div>
-<div class="grid" *ngIf="!loading">
+
+<div class="grid" *ngIf="!loading && !error">
   <ng-container *ngFor="let p of products">
     <div [routerLink]="['/product', p.id]" class="card">
       <div class="image">
-        <img [src]="p.data.image">
+        <img class="images-product" [src]="p.data.image">
       </div>
       <div class="body">
         <span class="name">{{p.data.name}}</span> <br>
@@ -22,4 +26,13 @@
       </div>
     </div>
   </ng-container>
+</div>
+
+<div class="card-error" *ngIf="!loading && error">
+  <div class="image">
+    <img class="image-error" src="error">
+  </div>
+  <div class="body">
+    <h4>Ocurrio un error de conexión, por favor intente más tarde.</h4>
+  </div>
 </div>

@@ -24,4 +24,8 @@ export class FirestoreService {
   public updateProduct(documentId: string, data: any) {
     return this.firestore.collection('products').doc(documentId).set(data);
   }
+
+  public deleteProduct(documentId: string, data: any) {
+    return this.firestore.collection('products').doc(documentId).set(data);
+  }
 }

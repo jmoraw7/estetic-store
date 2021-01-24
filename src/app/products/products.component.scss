@@ -1,6 +1,6 @@
-$spinner: #efccf5;
+$spinner: #bb36d2;
 $background: white;
-$size: 30px;
+$size: 50px;
 
 @media (min-width: 100px) {
   .grid {
@@ -462,7 +462,7 @@ $size: 30px;
   }
 }
 
-img {
+.images-product {
   width: 100% !important;
   min-height: 140px;
   max-height: 140px;
@@ -528,4 +528,15 @@ html { background-color: $background; }
 @keyframes spinner {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.admin {
+  right: 0;
+    left: auto;
+    margin-right: 28px;
+    position: absolute;
+  .icon {
+    cursor: pointer;
+    width: 25px !important;
+  }
 }

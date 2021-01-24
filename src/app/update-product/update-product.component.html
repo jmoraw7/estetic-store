@@ -1,6 +1,20 @@
-<p>update-product works!</p>
+<div class="toolbar">
+    <span class="home" [routerLink]="['/products']" *ngIf="id == 0">
+      <img src="assets/home.png">
+    </span>
+    <span class="back" [routerLink]="['/product', id]" *ngIf="id != 0">
+      <img src="assets/back.png">
+    </span>
+    <h1>Detalle</h1>
+</div>
 
-<form (ngSubmit)="save(productForm.value)" [formGroup]="productForm">
+<div class="spinner" *ngIf="loading">
+  <span class="spinner-inner-1"></span>
+  <span class="spinner-inner-2"></span>
+  <span class="spinner-inner-3"></span>
+</div>
+
+<form [formGroup]="productForm" class="form">
   <input type="hidden" formControlName="id">
   <input type="file" class="inputFile" #fileBrowser (change)="onUploadChange($event)" accept="image/*" multiple/>
 
@@ -16,7 +30,13 @@
   <label for="nombre">Precio actual</label>
   <input type="text" formControlName="actual_price"> <br>
 
-  <label for="url_img" (click)="takePicture()">Imagen</label> <br>
+  <label for="nombre">Estado</label>
+  <select formControlName="status">
+    <option value="1">Disponible</option>
+    <option value="0">No Disponible</option>
+  </select>
 
-  <input type="submit" class="btn--blue btn--add" [disabled]="!productForm.valid" value="Agregar">
+  <button class="s-image" (click)="takePicture()">Seleccionar imagen</button>
+
+  <button class="save" (click)="save(productForm.value)">Guardar</button>
 </form>

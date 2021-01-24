@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { ProductsComponent } from './products/products.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
-
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -15,6 +15,9 @@ const routes: Routes = [
   }, { 
     path: 'update-product/:id', 
     component: UpdateProductComponent 
+  }, { 
+    path: 'admin/:from/:id', 
+    component: AdminComponent 
   }, {
     path: '**',
     pathMatch: 'full',

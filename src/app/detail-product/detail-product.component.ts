@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
 
 @Component({
@@ -11,25 +11,40 @@ export class DetailProductComponent implements OnInit {
   id: any;
   product: any;
   isAdmin: boolean = false;
+  error: boolean = false;
+  loading: boolean = true;
   constructor(
     private _Activatedroute: ActivatedRoute,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router: Router,
   ) { 
     this.id = this._Activatedroute.snapshot.paramMap.get("id");
+    let admin = atob(localStorage.getItem('admin'));
+    if (admin == '!*esteticstore*!') {
+      this.isAdmin = true;
+    }
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('admin') == '*!esteticestore!*') {
-      this.isAdmin = true;
-    }
     let editSubscribe = this.firestoreService.getProduct(this.id).subscribe((product) => {
       this.product = product.payload.data();
+      this.loading = false;
       editSubscribe.unsubscribe();
+    }, (error) => {
+      this.loading = false;
+      this.error = true;
     });
   }
 
-  verifyAdmin() {
-    
+  delete() {
+    // this.loading = true;
+    // this.firestoreService.deleteProduct(this.id).then(() => {
+    //   this.loading = false;
+    //   alert('¡Producto eliminado correctamente!');
+    //   this.router.navigate(['products']);
+    // }, (error) => {
+    //   alert('Ocurrio un error intetnando eliminar el producto, por favor intente más tarde.');
+    // });
   }
 
 }

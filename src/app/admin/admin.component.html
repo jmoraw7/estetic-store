@@ -1,0 +1,17 @@
+<div class="toolbar">
+  <span class="home" [routerLink]="['/products']" *ngIf="from == 'home'">
+    <img src="assets/home.png">
+  </span>
+  <span class="back" [routerLink]="['/product', id]" *ngIf="from == 'detail'">
+    <img src="assets/back.png">
+  </span>
+    <h1>Admin</h1>
+</div>
+
+<form [formGroup]="adminForm" class="form">
+  <label for="nombre">Clave</label>
+  <input type="password" formControlName="key"> <br>
+  <button class="login" (click)="login(adminForm.value)" [disabled]="!adminForm.valid">
+  Continuar
+</button>
+</form>

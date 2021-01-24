@@ -1,6 +1,4 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
 
 @Component({
@@ -12,16 +10,19 @@ export class ProductsComponent implements OnInit {
   public products = [];
   loading: boolean = true;
   error: boolean = false;
+  isAdmin: boolean = false;
   constructor(
     private firestoreService: FirestoreService,
-    private router: Router,
     private elementRef: ElementRef
     ) {
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#ffffff';
+      let admin = atob(localStorage.getItem('admin'));
+      if (admin == '!*esteticstore*!') {
+        this.isAdmin = true;
+      }
     }
 
   ngOnInit(): void {
-    localStorage.setItem('admin', btoa('*!esteticestore!*'));
     this.firestoreService.getProducts().subscribe(async (productsSnapshot) => {
       this.products = [];
       await productsSnapshot.forEach(async (productData: any) => {

@@ -9,13 +9,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     DetailProductComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

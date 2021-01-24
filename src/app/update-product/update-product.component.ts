@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirestoreService } from '../services/firestore/firestore.service';
 
 @Component({
@@ -17,28 +17,34 @@ export class UpdateProductComponent implements OnInit {
     image: new FormControl('', Validators.required),
     actual_price: new FormControl('', Validators.required),
     previus_price: new FormControl('', Validators.required),
+    status: new FormControl('', Validators.required),
     id: new FormControl('')
   });
+  loading: boolean = false;
   @ViewChild('fileBrowser', {static: false}) fileBrowser: ElementRef;
   constructor(
     private _Activatedroute: ActivatedRoute,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router: Router,
   ) { 
     this.id = this._Activatedroute.snapshot.paramMap.get("id");
   }
 
   ngOnInit(): void {
-    if (this.id !== 0) {
-      
-    } else {
-      this.productForm.setValue({
-        id: '',
-        name: '',
-        description: '',
-        image: this.image,
-        actual_price: '',
-        previus_price: ''
-      }); 
+    if (this.id != 0) {
+      this.loading = true;
+      let editSubscribe = this.firestoreService.getProduct(this.id).subscribe((product) => {
+        this.productForm.controls['name'].setValue(product.payload.data().name);
+        this.productForm.controls['description'].setValue(product.payload.data().description);
+        this.productForm.controls['previus_price'].setValue(product.payload.data().previus_price);
+        this.productForm.controls['actual_price'].setValue(product.payload.data().actual_price);
+        this.productForm.controls['image'].setValue(product.payload.data().image);
+        this.productForm.controls['status'].setValue(product.payload.data().status);
+        this.loading = false;
+        editSubscribe.unsubscribe();
+      }, error => {
+        this.loading = false;
+      });
     }
   }
 
@@ -64,6 +70,14 @@ export class UpdateProductComponent implements OnInit {
   }
 
   public save(form, documentId = this.id) {
+    if(this.loading) {
+      return;
+    }
+    if(!form.name || !form.description || !form.image || !form.previus_price || !form.actual_price) {
+      alert('¡Por favor verificar los campos ingresados!');
+      return;
+    }
+    this.loading = true;
     if (documentId == 0) {
       let data = {
         name: form.name,
@@ -71,6 +85,7 @@ export class UpdateProductComponent implements OnInit {
         image: form.image,
         previus_price: form.previus_price,
         actual_price: form.actual_price,
+        status: form.status
       }
       this.firestoreService.createProduct(data).then(() => {
         this.productForm.setValue({
@@ -79,11 +94,15 @@ export class UpdateProductComponent implements OnInit {
           description: '',
           image: '',
           actual_price: '',
-          previus_price: ''
+          previus_price: '',
+          status: ''
         });
-        alert('producto creado');
+        this.loading = false;
+        alert('¡Producto creado correctamente!');
+        this.router.navigate(['products']);
       }, (error) => {
-        console.error(error);
+        this.loading = false;
+        alert('Ocurrio un error, por favor intente más tarde.');
       });
     } else {
       let data = {
@@ -92,6 +111,7 @@ export class UpdateProductComponent implements OnInit {
         image: form.image,
         previus_price: form.previus_price,
         actual_price: form.actual_price,
+        status: form.status
       }
       this.firestoreService.updateProduct(documentId, data).then(() => {
         this.productForm.setValue({
@@ -100,11 +120,15 @@ export class UpdateProductComponent implements OnInit {
           description: '',
           image: '',
           actual_price: '',
-          previus_price: ''
+          previus_price: '',
+          status: ''
         });
-        alert('producto editado');
+        this.loading = false;
+        alert('¡Producto editado correctamente!');
+        this.router.navigate(['product/' + documentId]);
       }, (error) => {
-        console.log(error);
+        this.loading = false;
+        alert('Ocurrio un error, por favor intente más tarde.');
       });
     }
   }

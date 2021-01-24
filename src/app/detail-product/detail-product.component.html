@@ -1,15 +1,43 @@
 <div class="toolbar">
-    <h1>Detalle del producto</h1>
-    <span class="add" ></span>
+	<span class="home" [routerLink]="['/products']">
+    	<img src="assets/home.png">
+    </span>
+    <h1>Detalle</h1>
+    <span class="admin" *ngIf="!isAdmin">
+      <img class="icon" src="assets/profile-user.png" [routerLink]="['/admin', 'detail', id]">
+    </span>
 </div>
 
-<div class="body">
+<div class="grid" *ngIf="!loading && !error">
     <div class="card">
-
+      <div class="image">
+        <img class="image-product" [src]="product.image" [routerLink]="['/admin', 'detail']">
+      </div>
+      <div class="body">
+        <span class="name">{{product.name}}</span> <br>
+        <span>{{product.description}}</span> <br>
+        <span *ngIf="product.previus_price > 0" class="discount price">${{product.previus_price}}</span> <br *ngIf="product.previus_price > 0">
+        <span class="price">${{product.actual_price}}</span> <br>
+      </div>
     </div>
     <div class="footer">
-        <button>Enviar información al vendedor</button>
-        <button *ngIf="isAdmin" [routerLink]="['/update-product', id]">Editar</button>
-        <button *ng="isAdmin">Eliminar</button>
+        <button class="send">Enviar información al vendedor</button>
+        <button class="edit" *ngIf="isAdmin" [routerLink]="['/update-product', id]">Editar</button>
+        <button class="delete" *ngIf="isAdmin" (click)="delete()">Eliminar</button>
     </div>
+</div>
+
+<div class="spinner" *ngIf="loading">
+  <span class="spinner-inner-1"></span>
+  <span class="spinner-inner-2"></span>
+  <span class="spinner-inner-3"></span>
+</div>
+
+<div class="card-error" *ngIf="!loading && error">
+  <div class="image">
+    <img class="image-error" src="error">
+  </div>
+  <div class="body">
+    <h4>Ocurrio un error de conexión, por favor intente más tarde.</h4>
+  </div>
 </div>
