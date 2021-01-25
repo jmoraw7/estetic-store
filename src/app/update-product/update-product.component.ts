@@ -74,7 +74,7 @@ export class UpdateProductComponent implements OnInit {
     if(this.loading) {
       return;
     }
-    if(!form.name || !form.description || !form.image || !form.previus_price || !form.actual_price) {
+    if(!form.name || !form.description || !form.image || !form.previus_price || !form.actual_price || !form.status) {
       alert('¡Por favor verificar los campos ingresados!');
       return;
     }
