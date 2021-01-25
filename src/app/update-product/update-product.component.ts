@@ -34,12 +34,13 @@ export class UpdateProductComponent implements OnInit {
     if (this.id != 0) {
       this.loading = true;
       let editSubscribe = this.firestoreService.getProduct(this.id).subscribe((product) => {
-        this.productForm.controls['name'].setValue(product.payload.data().name);
-        this.productForm.controls['description'].setValue(product.payload.data().description);
-        this.productForm.controls['previus_price'].setValue(product.payload.data().previus_price);
-        this.productForm.controls['actual_price'].setValue(product.payload.data().actual_price);
-        this.productForm.controls['image'].setValue(product.payload.data().image);
-        this.productForm.controls['status'].setValue(product.payload.data().status);
+        let p = product.payload.data();
+        this.productForm.controls['name'].setValue(p.name);
+        this.productForm.controls['description'].setValue(p.description);
+        this.productForm.controls['previus_price'].setValue(p.previus_price);
+        this.productForm.controls['actual_price'].setValue(p.actual_price);
+        this.productForm.controls['image'].setValue(p.image);
+        this.productForm.controls['status'].setValue(p.status);
         this.loading = false;
         editSubscribe.unsubscribe();
       }, error => {

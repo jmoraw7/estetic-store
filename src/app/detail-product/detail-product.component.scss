@@ -4,10 +4,39 @@ $size: 50px;
 
 html { background-color: $background; }
 
-.grid {
-	display: grid;
-	grid-template-columns: 1fr;
-	padding-top: 80px;
+
+@media (min-width: 100px) {  
+  .image-product {
+    width: 100% !important;
+    min-height: 230px;
+    max-height: 230px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 85px 15px 15px 15px;
+    margin: 10px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75)
+  }
+}
+
+@media (min-width: 600px) {  
+  .image-product {
+    width: 100% !important;
+    min-height: 400px;
+    max-height: 400px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 85px 15px 15px 15px;
+    margin: 10px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75)
+  }
 }
 
 .toolbar {
@@ -85,12 +114,6 @@ html { background-color: $background; }
 	}
 }
 
-.image-product {
-	width: 100% !important;
-    min-height: 230px;
-    max-height: 230px;
-}
-
 .send {
 	background-color: #4CAF50;
     border: none;
@@ -133,4 +156,31 @@ html { background-color: $background; }
     width: 100%;
     margin-top: 10px;
     cursor: pointer;
+}
+
+
+.body {
+  padding: 10px;
+  line-height: 20px;
+  color: black;
+  background-color: #ffffff;
+  position: relative;
+  .name {
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+  }
+  .discount {
+    text-decoration: line-through;
+    margin-bottom: 25px;
+    color: red !important;
+  }
+  .price {
+    left: 0;
+    position: absolute !important;
+    padding: 10px;
+    color: #158615;
+    font-size: 24px;
+    font-weight: 600;
+  }
 }

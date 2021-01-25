@@ -21,7 +21,7 @@
       <div class="body">
         <span class="name">{{p.data.name}}</span> <br>
         <span>{{p.data.description}}</span> <br>
-        <span *ngIf="p.data.previus_price > 0" class="discount price">${{p.data.previus_price}}</span> <br *ngIf="p.data.previus_price > 0">
+        <span *ngIf="p.data.previus_price > 0 && p.data.previus_price < p.data.actual_price" class="discount price">${{p.data.previus_price}}</span> <br *ngIf="p.data.previus_price > 0">
         <span class="price">${{p.data.actual_price}}</span> <br>
       </div>
     </div>
