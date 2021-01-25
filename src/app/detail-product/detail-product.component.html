@@ -25,7 +25,7 @@
       </ng-container>
     </div>
     <div class="footer">
-        <button class="send" [routerLink]="['/contact', id]">Enviar información al Whastapp</button>
+        <button class="send" [routerLink]="['/contact', id]">Enviar información al vendedor</button>
         <button class="edit" *ngIf="isAdmin" [routerLink]="['/update-product', id]">Editar</button>
         <button class="delete" *ngIf="isAdmin" (click)="delete()">Eliminar</button>
     </div>
