@@ -8,10 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ContactComponent implements OnInit {
   id: any;
+  message = '¡Hola!';
   constructor(
     private _Activatedroute: ActivatedRoute,
   ) {
     this.id = this._Activatedroute.snapshot.paramMap.get("id");
+    this.message = `¡Hola! Estoy interesado en este producto: https://esteticstore-ve.web.app/product/${this.id}`;
    }
 
   ngOnInit(): void {
