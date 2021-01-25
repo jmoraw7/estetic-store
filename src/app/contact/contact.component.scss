@@ -1,0 +1,80 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  background-color: #efccf5;
+  margin: -9px !important;
+  padding: 0px 0px 0px 15px !important;
+  margin-bottom: 10px !important;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  h1 {
+  	margin-left: 35px;
+  }
+}
+
+.send {
+	background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.send2 {
+	background-color: #ef4c5b;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.back {
+  right: auto;
+  left: 0;
+  margin-left: 12px;
+  position: absolute;
+  img {
+    cursor: pointer;
+    width: 18px;
+  }
+}
+
+.content {
+  padding-top: 80px;
+}
+
+.contact {
+  right: 0;
+  left: auto;
+  position: absolute;
+  margin-right: 25px;
+  img {
+    width: 50px;
+  }
+}
+
+.info {
+  text-align: center;
+  bottom: 0;
+  top: auto;
+  position: absolute;
+  margin-bottom: 10px;
+  width: 100%;
+}

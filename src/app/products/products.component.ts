@@ -26,10 +26,12 @@ export class ProductsComponent implements OnInit {
     this.firestoreService.getProducts().subscribe(async (productsSnapshot) => {
       this.products = [];
       await productsSnapshot.forEach(async (productData: any) => {
-        await this.products.push({
-          id: productData.payload.doc.id,
-          data: productData.payload.doc.data()
-        });
+        if (productData.payload.doc.data().status == 1 || (productData.payload.doc.data().status == 0 && this.isAdmin)) {
+          await this.products.push({
+            id: productData.payload.doc.id,
+            data: productData.payload.doc.data()
+          }); 
+        }
       });
       this.loading = false;
     }, error => {

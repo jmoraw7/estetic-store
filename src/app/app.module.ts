@@ -10,6 +10,7 @@ import { ProductsComponent } from './products/products.component';
 import { DetailProductComponent } from './detail-product/detail-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { AdminComponent } from './admin/admin.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdminComponent } from './admin/admin.component';
     ProductsComponent,
     DetailProductComponent,
     UpdateProductComponent,
-    AdminComponent
+    AdminComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
