@@ -2,7 +2,7 @@
   display: none;
 }
 
-input[type=text] {
+input[type=password] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -51,7 +51,7 @@ input[type=text] {
 }
 
 .login {
-  background-color: #4CAF50;
+	background-color: #4CAF50;
   border: none;
   color: white;
   padding: 15px 32px;

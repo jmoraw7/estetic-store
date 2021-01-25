@@ -37,14 +37,14 @@ export class DetailProductComponent implements OnInit {
   }
 
   delete() {
-    // this.loading = true;
-    // this.firestoreService.deleteProduct(this.id).then(() => {
-    //   this.loading = false;
-    //   alert('¡Producto eliminado correctamente!');
-    //   this.router.navigate(['products']);
-    // }, (error) => {
-    //   alert('Ocurrio un error intetnando eliminar el producto, por favor intente más tarde.');
-    // });
+    this.loading = true;
+    this.firestoreService.deleteProduct(this.id).then(() => {
+      this.loading = false;
+      alert('¡Producto eliminado correctamente!');
+      this.router.navigate(['products']);
+    }, (error) => {
+      alert('Ocurrio un error intetnando eliminar el producto, por favor intente más tarde.');
+    });
   }
 
 }

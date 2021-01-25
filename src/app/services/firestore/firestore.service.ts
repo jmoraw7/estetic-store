@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { ProductsComponent } from 'src/app/products/products.component';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,11 @@ export class FirestoreService {
     return this.firestore.collection('products').doc(documentId).set(data);
   }
 
-  public deleteProduct(documentId: string, data: any) {
-    return this.firestore.collection('products').doc(documentId).set(data);
+  public async deleteProduct(documentId: string) {
+    var product = this.firestore.collection('products').doc(documentId);
+
+    await product.delete().then(response => {
+      return true;
+    });
   }
 }

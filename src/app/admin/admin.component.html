@@ -9,9 +9,9 @@
 </div>
 
 <form [formGroup]="adminForm" class="form">
-  <label for="nombre">Clave</label>
+
+  <label for="nombre">Clave de administrador</label>
   <input type="password" formControlName="key"> <br>
-  <button class="login" (click)="login(adminForm.value)" [disabled]="!adminForm.valid">
-  Continuar
-</button>
+
+  <button class="login" (click)="login(adminForm.value)">Continuar</button>
 </form>
